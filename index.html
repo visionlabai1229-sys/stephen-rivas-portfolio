@@ -233,7 +233,7 @@ a.link-row:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border
   <div class="surface reveal p-9 md:p-12 text-center">
     <h2 class="serif" style="font-size:clamp(30px,4.5vw,46px);letter-spacing:-.02em">Let's talk.</h2>
     <p class="mt-4 max-w-xl mx-auto text-[15px] leading-[1.7]" style="color:var(--muted)">
-      Open to full-time roles and select projects. Happy to walk through any of these builds live on a call.
+      <span id="open-line">Open to full-time roles and select projects.</span> Happy to walk through any of these builds live on a call.
     </p>
     <div class="mt-8 flex flex-wrap gap-4 justify-center">
       <a href="mailto:stephenrivas24@icloud.com" class="btn">Email me <span aria-hidden="true">&rarr;</span></a>
@@ -249,6 +249,11 @@ a.link-row:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border
 
 <script>
 document.documentElement.classList.add('js');
+// Business link: add ?biz to the URL. Default (no ?biz) is the job-application version.
+if(/[?&]biz\b/.test(location.search)){
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.href='mailto:stephen@visionlabai.ca');
+  const o=document.getElementById('open-line'); if(o) o.textContent='Open to freelance and partnership work in AI voice systems and automation.';
+}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');
  e.target.querySelectorAll('[data-count]').forEach(n=>{const t=+n.dataset.count;if(t<10||matchMedia('(prefers-reduced-motion:reduce)').matches)return;let s=null;const f=ts=>{s=s||ts;const p=Math.min((ts-s)/1100,1);n.textContent=Math.round(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
  io.unobserve(e.target)}}),{threshold:.12});
